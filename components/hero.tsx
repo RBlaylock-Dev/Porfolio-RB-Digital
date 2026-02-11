@@ -1,21 +1,21 @@
-import Link from "next/link"
-import { ArrowRight } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { ResumeDownload } from "@/components/resume-download"
+import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ResumeDownload } from "@/components/resume-download";
 
 export default function Hero() {
   return (
     <section className="hero-section py-20 md:py-32 bg-gradient-to-br from-crimson-50 via-white to-blue-50 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
       <div className="container mx-auto px-4 text-center">
         <h1 className="text-4xl md:text-6xl font-bold mb-6">
-          Hi, I'm{" "}
+          Hi, I&apos;m{" "}
           <span className="text-primary bg-gradient-to-r from-crimson-500 to-blue-600 bg-clip-text text-transparent">
             Robert Blaylock
           </span>
         </h1>
         <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 max-w-2xl mx-auto font-medium">
-          Full Stack Developer with Project Management experience specializing in building exceptional digital
-          experiences
+          Full Stack Developer with Project Management experience specializing
+          in building exceptional digital experiences
         </p>
         <div className="flex flex-col sm:flex-row justify-center gap-4">
           <Button
@@ -43,5 +43,5 @@ export default function Hero() {
         </div>
       </div>
     </section>
-  )
+  );
 }
