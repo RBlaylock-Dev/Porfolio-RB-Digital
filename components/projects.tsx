@@ -165,6 +165,42 @@ export default function Projects({ showAll = false }: ProjectsProps) {
       githubUrl: "https://github.com/rblaylock-dev",
       liveUrl: "https://haunted-house-3-js-tau.vercel.app",
     },
+    {
+      id: 16,
+      title: "UpCurve",
+      description: "A donation platform that allows users to donate to non-profits",
+      image: "/images/Upcurve.png",
+      tags: ["Next.js", "Stripe", "Supabase", "Sendgrid", "Donation Platform"],
+      githubUrl: "https://github.com/", //Since its private repo I cant share the link
+      liveUrl: "https://upcurve.life",
+    },
+    {
+      id: 17,
+      title: "ShareXR",
+      description: "An immersive 3D platform that provides companies a way to provide virtual training to their employees",
+      image: "/images/ShareXR.png",
+      tags: ["Three.js", "3D Modeling", "Strapi", "Firebase", "Interactive"],
+      githubUrl: "https://github.com/", // Since it is private and I can't share the link
+      liveUrl: "https://sharexr.app",
+    },
+    {
+      id: 18,
+      title: "Stor-It",
+      description: "A storage platform that allows users to store their files in the cloud.",
+      image: "/images/Stor-it.png",
+      tags: ["Next.js", "Appwrite", "File-Uploads", "DevOps", "OTP"],
+      githubUrl: "https://github.com/rblaylock-dev", // Since it is private and I can't share the link
+      liveUrl: "https://stor-it-alpha.vercel.app",
+    },
+    {
+      id: 19,
+      title: "Redeemly",
+      description: "A social platform for ministries to connect with their members.",
+      image: "/images/Redeemly.png",
+      tags: ["Next.js", "Social", "Realtime Chat", "DevOps", "Ministry"],
+      githubUrl: "https://github.com/rblaylock-dev", // Since it is private and I can't share the link
+      liveUrl: "https://redeemly-startup.vercel.app",
+    },
   ]
 
   // Auto-scroll functionality
