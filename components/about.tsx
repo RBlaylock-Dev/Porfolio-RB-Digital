@@ -29,18 +29,26 @@ export default function About({ showFull = false }: AboutProps) {
 
           <div className="md:w-2/3">
             <p className="text-lg mb-6">
-              I’m a full stack developer with strong skills in JavaScript,
-              Tailwind CSS, and React. I also bring valuable project management
-              experience, enabling me to deliver efficient, well-organized
-              solutions across both front-end and back-end development.
+              I&apos;m a Senior Full-Stack &amp; AI Engineer. My day job is
+              with Banyan Labs — building production conversational AI
+              agents, multi-tenant SaaS platforms, and interactive 3D web
+              experiences — and I also take on direct freelance and contract
+              work for teams who want to hire me as an individual, not an
+              agency. My toolkit spans Next.js, React, Go, Flutter, and
+              Three.js, with a deep focus on modern LLM stacks — Claude, AWS
+              Bedrock, OpenAI, MCP, and RAG.
             </p>
 
             <p className="text-lg mb-6">
-              I began teaching myself to code about six years ago and have since
-              earned a Full Stack Developer certificate through Persevere. I’ve
-              worked at Banyan Labs on projects like a web directory app and a
-              product landing page, using Git, Git Flow, and Agile methodology
-              to collaborate and deliver effectively.
+              I started teaching myself to code about six years ago, earned my
+              Full-Stack Developer certificate through Persevere, and joined
+              Banyan Labs — a software studio that employs and mentors
+              justice-impacted developers through real client work. Since then
+              I&apos;ve grown into senior IC and tech-lead roles, shipping
+              AI-native products end-to-end and mentoring junior engineers
+              along the way. Before software, I spent a decade leading teams
+              and managing operations — that ground-floor leadership still
+              shapes how I ship today.
             </p>
 
             {!showFull && (
@@ -54,18 +62,28 @@ export default function About({ showFull = false }: AboutProps) {
             {showFull && (
               <>
                 <p className="text-lg mb-6">
-                  When I&apos;m not coding, you can find me being a dad,
-                  spending time with family, or serving at church. I believe in
-                  maintaining a healthy work-life balance and finding
-                  inspiration in diverse activities.
+                  My faith in Christ is the foundation of how I work and why.
+                  I see software as a craft to steward well, and I&apos;m
+                  drawn to building products that serve the underserved —
+                  tools for justice-impacted workers, ministries, and
+                  communities trying to do better by their people. That
+                  conviction is why projects like HALO, Redeemly, and
+                  Banyan&apos;s mission-driven work matter to me beyond the
+                  code.
                 </p>
 
                 <p className="text-lg mb-6">
-                  I&apos;m currently open to new opportunities where I can
-                  contribute my skills and grow as a developer. If you&apos;re
-                  looking for someone who is not only technically proficient but
-                  also a great team player with excellent communication skills,
-                  let&apos;s connect!
+                  Outside of work I&apos;m a husband and dad, I serve in my
+                  local church, and I try to keep a healthy rhythm between
+                  building things and being present with the people I love.
+                </p>
+
+                <p className="text-lg mb-6">
+                  I&apos;m open to senior IC roles, contracts, and direct
+                  freelance engagements — short scopes, long builds, or
+                  fractional senior help, all on the table. If you&apos;re
+                  building something meaningful — especially in AI, 3D, or
+                  mission-aligned technology — let&apos;s talk.
                 </p>
               </>
             )}

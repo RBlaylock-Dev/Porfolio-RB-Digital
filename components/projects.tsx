@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { ExternalLink, Github, ChevronLeft, ChevronRight } from "lucide-react"
+import { ExternalLink, Code2, ChevronLeft, ChevronRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -201,6 +201,96 @@ export default function Projects({ showAll = false }: ProjectsProps) {
       githubUrl: "https://github.com/rblaylock-dev", // Since it is private and I can't share the link
       liveUrl: "https://redeemly-startup.vercel.app",
     },
+    {
+      id: 20,
+      title: "Banyan Onboarding Portal",
+      description:
+        "An internal Banyan Labs platform for the full OJT lifecycle — applicant pipeline, role-based access, video curriculum, weekly reviews, time tracking, document signing, and certificate generation.",
+      image: "/images/Banyan-Onboarding-Portal.png",
+      tags: ["Next.js 16", "Firebase", "Firestore", "TypeScript", "SendGrid"],
+      githubUrl: "https://github.com/", // Private Banyan Labs repo
+      liveUrl: "", // TODO: add live URL
+    },
+    {
+      id: 21,
+      title: "Banyan Labs Website",
+      description:
+        "The public marketing site for Banyan Labs — Payload CMS-powered blog, MDX role-based recruiting pages, product showcase, and lead capture into SendGrid + Mailchimp.",
+      image: "/images/Banyan-Website.png",
+      tags: ["Next.js 16", "Payload CMS", "PostgreSQL", "Cloud SQL", "Firebase App Hosting"],
+      githubUrl: "https://github.com/", // Private Banyan Labs repo
+      liveUrl: "https://banyanlabs.io",
+    },
+    {
+      id: 22,
+      title: "Harper (HRPR)",
+      description:
+        "A multi-tenant conversational AI assistant with a Flutter mobile/web client, Go BFF, AWS Bedrock + multi-provider TTS, and an embeddable widget that auto-themes to any host site.",
+      image: "/images/HRPR.png",
+      tags: ["Flutter", "Go", "AWS Bedrock", "ElevenLabs", "PostgreSQL"],
+      githubUrl: "https://github.com/", // Private Banyan Labs repo
+      liveUrl: "", // TODO: add live URL
+    },
+    {
+      id: 23,
+      title: "JONA",
+      description:
+        "A multi-tenant job-search SaaS that scrapes nine job boards on a schedule and uses AI skill-matching to rank roles against a user's resume — Stripe-billed, with live scraper telemetry over WebSockets.",
+      image: "/images/JONA.png",
+      tags: ["Next.js 14", "FastAPI", "Playwright", "Supabase", "Stripe"],
+      githubUrl: "https://github.com/", // Private Banyan Labs repo
+      liveUrl: "", // TODO: add live URL
+    },
+    {
+      id: 24,
+      title: "The Forge",
+      description:
+        "A first-person walkable 3D portfolio site where the experience itself is the proof of skill — five themed zones in a single R3F scene, with custom GLSL shaders, an in-world Claude-powered Forge Spirit chatbot, and a dynamic resume PDF generator.",
+      image: "/images/The-FOrge.png",
+      tags: ["Next.js 14", "React Three Fiber", "GLSL", "Claude API", "Vercel"],
+      githubUrl: "https://github.com/rblaylock-dev",
+      liveUrl: "https://www.rblaylock.dev",
+    },
+    {
+      id: 25,
+      title: "HALO Platform",
+      description:
+        "A blockchain-anchored professional identity platform giving justice-impacted workers a verifiable, portable career record they own — endorsements, organization invites, and on-chain trust anchored to Base L2.",
+      image: "/images/Halo.png",
+      tags: ["Next.js 16", "Firebase", "Firestore", "Base L2", "Tailwind 4"],
+      githubUrl: "https://github.com/", // Private Banyan Labs repo
+      liveUrl: "", // TODO: add live URL
+    },
+    {
+      id: 26,
+      title: "Savannah Community Hub",
+      description:
+        "A mobile-first event discovery platform for Savannah, Tennessee — public calendar with category filtering, admin CRUD, and Firestore-rules-enforced role-based access for organizers and superadmins.",
+      image: "/images/Sav-Community-Hub.png",
+      tags: ["Next.js 16", "Firebase", "Firestore", "shadcn/ui", "Playwright"],
+      githubUrl: "https://github.com/RBlaylock-Dev/sav-community-hub",
+      liveUrl: "", // TODO: add live URL
+    },
+    {
+      id: 27,
+      title: "Assessments.com Rebuild",
+      description:
+        "A modern, statically-rendered rebuild of Assessments.com that preserves every legacy URL and SEO surface while replacing the underlying stack — built under strict no-URL-change, no-content-removal guardrails.",
+      image: "/images/Assessments.png",
+      tags: ["Next.js 16", "React 19", "Tailwind 4", "Static Export", "Firebase Hosting"],
+      githubUrl: "https://github.com/", // Private Banyan Labs repo
+      liveUrl: "", // TODO: add live URL
+    },
+    {
+      id: 28,
+      title: "Persevere Website",
+      description:
+        "Redesigned and rebuilt the Persevere website on WordPress — the nonprofit coding bootcamp that trains justice-impacted individuals (and where I earned my Full-Stack Developer certificate).",
+      image: "/images/Persevere.png",
+      tags: ["WordPress", "Web Design", "Nonprofit", "Branding", "Content Strategy"],
+      githubUrl: "", // WordPress site, no public repo
+      liveUrl: "", // TODO: add live URL
+    },
   ]
 
   // Auto-scroll functionality
@@ -274,7 +364,7 @@ export default function Projects({ showAll = false }: ProjectsProps) {
                 <CardFooter className="flex justify-between">
                   <Button variant="outline" size="sm" asChild>
                     <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                      <Github className="mr-2 h-4 w-4" />
+                      <Code2 className="mr-2 h-4 w-4" />
                       Code
                     </a>
                   </Button>
@@ -340,7 +430,7 @@ export default function Projects({ showAll = false }: ProjectsProps) {
                     <CardFooter className="flex justify-between">
                       <Button variant="outline" size="sm" asChild>
                         <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                          <Github className="mr-2 h-4 w-4" />
+                          <Code2 className="mr-2 h-4 w-4" />
                           Code
                         </a>
                       </Button>
