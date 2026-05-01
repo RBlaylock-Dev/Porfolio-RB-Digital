@@ -1,8 +1,11 @@
 "use client"
 
+import { useState } from "react"
 import Image from "next/image"
 import { PROJECTS, type Project } from "@/lib/portfolio-data"
 import { ProjectThumb } from "./project-thumb"
+
+const INITIAL_VISIBLE = 10
 
 const RATIOS = ["ratio-wide", "ratio-square", "ratio-tall", "ratio-wide"] as const
 
@@ -77,9 +80,14 @@ function WorkRow({ p, i }: { p: Project; i: number }) {
 }
 
 export function Work() {
+  const [expanded, setExpanded] = useState(false)
   const total = PROJECTS.length
   const live = PROJECTS.filter((p) => p.live).length
   const open = PROJECTS.filter((p) => p.code).length
+
+  const hasMore = total > INITIAL_VISIBLE
+  const visibleProjects = expanded ? PROJECTS : PROJECTS.slice(0, INITIAL_VISIBLE)
+  const hiddenCount = total - INITIAL_VISIBLE
 
   return (
     <section className="work-section-v3" id="work">
@@ -116,10 +124,37 @@ export function Work() {
         </header>
 
         <div className="work-spread">
-          {PROJECTS.map((p, i) => (
+          {visibleProjects.map((p, i) => (
             <WorkRow key={p.id} p={p} i={i} />
           ))}
         </div>
+
+        {hasMore && (
+          <div className="work-toggle-wrap reveal">
+            <button
+              type="button"
+              className="row-link primary work-toggle"
+              onClick={() => setExpanded((v) => !v)}
+              aria-expanded={expanded}
+            >
+              <span>
+                {expanded ? "view less" : `view ${hiddenCount} more`}
+              </span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.6"
+                style={{
+                  transform: expanded ? "rotate(180deg)" : "rotate(0deg)",
+                  transition: "transform 0.25s",
+                }}
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+          </div>
+        )}
       </div>
     </section>
   )
