@@ -22,9 +22,9 @@ interface Chapter {
 const SECTIONS: Chapter[] = [
   { id: "top", num: "00", label: "INDEX" },
   { id: "about", num: "01", label: "ABOUT" },
-  { id: "work", num: "02", label: "WORK" },
-  { id: "stack", num: "03", label: "STACK" },
-  { id: "path", num: "04", label: "PATH" },
+  { id: "path", num: "02", label: "PATH" },
+  { id: "work", num: "03", label: "WORK" },
+  { id: "stack", num: "04", label: "STACK" },
   { id: "contact", num: "05", label: "CONTACT" },
 ]
 
@@ -50,7 +50,7 @@ export default function Portfolio() {
 
   useEffect(() => {
     if (!loaded) return
-    const els = document.querySelectorAll(".reveal")
+    const observed = new WeakSet<Element>()
     const io = new IntersectionObserver(
       (entries) => {
         entries.forEach((e) => {
@@ -59,8 +59,26 @@ export default function Portfolio() {
       },
       { threshold: 0.12, rootMargin: "0px 0px -60px 0px" },
     )
-    els.forEach((el) => io.observe(el))
-    return () => io.disconnect()
+    function attach(el: Element) {
+      if (observed.has(el)) return
+      observed.add(el)
+      io.observe(el)
+    }
+    document.querySelectorAll(".reveal").forEach(attach)
+    const mo = new MutationObserver((mutations) => {
+      for (const m of mutations) {
+        m.addedNodes.forEach((n) => {
+          if (!(n instanceof Element)) return
+          if (n.classList?.contains("reveal")) attach(n)
+          n.querySelectorAll?.(".reveal").forEach(attach)
+        })
+      }
+    })
+    mo.observe(document.body, { childList: true, subtree: true })
+    return () => {
+      io.disconnect()
+      mo.disconnect()
+    }
   }, [loaded])
 
   return (
@@ -72,9 +90,9 @@ export default function Portfolio() {
         <Hero />
         <About />
         <Marquee />
+        <Path />
         <Work />
         <Stack />
-        <Path />
         <Contact />
         <PortfolioFooter />
       </main>

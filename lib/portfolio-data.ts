@@ -7,10 +7,12 @@ export interface Project {
   tags: string[]
   live?: string
   code?: string
+  caseStudy?: string
   image?: string
   kind: ThumbKind
   color: string
   num: string
+  featured?: boolean
 }
 
 const PALETTE = ["#5d9eff", "#8fc4ff", "#6aa9f5", "#4a90e2"]
@@ -28,106 +30,112 @@ function pickKind(tags: string[]): ThumbKind {
 
 const RAW_PROJECTS: Omit<Project, "kind" | "color" | "num">[] = [
   {
-    id: 1,
-    title: "3D Building Configurator",
-    desc: "A production 3D configurator for Derksen Buildings, letting customers customize and visualize buildings in real time.",
-    tags: ["Three.js", "PHP", "GitLab", "Production"],
-    live: "https://3d.derksenbuildings.com/neworder",
-    image: "/images/3d-configurator.jpg",
+    id: 14,
+    title: "ShareXR",
+    desc: "Enterprise hands-on training doesn't scale — in-person sessions don't reach distributed crews and video can't let people explore. ShareXR is a multi-tenant WebXR training platform that ships GLB/GLTF training scenes with hotspot annotations into any modern browser.",
+    tags: ["Three.js", "Strapi 5", "Cloud Run", "WebXR"],
+    live: "https://sharexr.app",
+    caseStudy: "/case-studies/sharexr",
+    image: "/images/ShareXR.png",
+    featured: true,
   },
   {
-    id: 2,
-    title: "The Forge",
-    desc: "A first-person walkable 3D portfolio site — five themed zones in a single R3F scene with custom GLSL shaders, an in-world Claude-powered chatbot, and a dynamic resume PDF generator.",
-    tags: ["Next.js 14", "React Three Fiber", "GLSL", "Claude API"],
-    live: "https://www.rblaylock.dev",
-    code: "https://github.com/rblaylock-dev",
-    image: "/images/The-FOrge.png",
+    id: 5,
+    title: "Nexara",
+    desc: "Banyan's intern pipeline lived across spreadsheets, forms, and email threads. Nexara consolidates the full lifecycle — applications, role-based access, video curriculum, weekly reviews, document signing, time logs, and certificate generation — into one Firebase-backed platform.",
+    tags: ["Next.js 16", "Firebase", "Firestore", "TypeScript"],
+    caseStudy: "/case-studies/nexara",
+    image: "/images/Banyan-Onboarding-Portal.png",
+    featured: true,
+  },
+  {
+    id: 1,
+    title: "Derksen Buildings",
+    desc: "Customers buying custom storage buildings couldn't see what they were configuring until delivery. Built a production Three.js configurator inside the existing PHP order flow that lets them spec, color, and view their build in real time before they buy.",
+    tags: ["Three.js", "PHP", "GitLab", "Production"],
+    live: "https://3d.derksenbuildings.com/neworder",
+    caseStudy: "/case-studies/derksen-buildings",
+    image: "/images/Derksen-Buildings.png",
+    featured: true,
   },
   {
     id: 3,
     title: "Harper (HRPR)",
-    desc: "A multi-tenant conversational AI assistant — Flutter mobile/web client, Go BFF, AWS Bedrock + multi-provider TTS, and an embeddable widget that auto-themes to any host site.",
+    desc: "Most chatbots dump walls of text and act without permission. Harper answers in 1–3 sentences first, then asks before going deeper — a multi-tenant Flutter + Go assistant on AWS Bedrock that embeds in any host site with one script tag.",
     tags: ["Flutter", "Go", "AWS Bedrock", "ElevenLabs"],
+    caseStudy: "/case-studies/harper",
     image: "/images/HRPR.png",
   },
   {
     id: 4,
     title: "JONA",
-    desc: "A multi-tenant job-search SaaS that scrapes nine job boards on a schedule and uses AI skill-matching to rank roles against a user's resume.",
+    desc: "Job seekers waste hours hopping between nine job boards. JONA scrapes them all on a schedule, parses your resume, and uses an AI matching engine to surface the roles you actually fit — multi-tenant SaaS on Next.js + FastAPI + Supabase.",
     tags: ["Next.js 14", "FastAPI", "Playwright", "Stripe"],
+    caseStudy: "/case-studies/jona",
     image: "/images/JONA.png",
   },
   {
-    id: 5,
-    title: "Banyan Onboarding Portal",
-    desc: "Internal Banyan Labs platform for the full OJT lifecycle — applicant pipeline, role-based access, video curriculum, weekly reviews, time tracking, document signing, and certificate generation.",
-    tags: ["Next.js 16", "Firebase", "Firestore", "TypeScript"],
-    image: "/images/Banyan-Onboarding-Portal.png",
+    id: 2,
+    title: "The Forge",
+    desc: "Most portfolios tell you what someone can do. The Forge shows you — a first-person walkable 3D world built in a single R3F scene, with five themed zones, custom GLSL, and an in-world Claude-powered chatbot.",
+    tags: ["Next.js 14", "React Three Fiber", "GLSL", "Claude API"],
+    live: "https://www.rblaylock.dev",
+    code: "https://github.com/rblaylock-dev",
+    caseStudy: "/case-studies/the-forge",
+    image: "/images/The-FOrge.png",
   },
   {
     id: 6,
     title: "Banyan Labs Website",
-    desc: "Public marketing site for Banyan Labs — Payload CMS-powered blog, MDX role-based recruiting pages, product showcase, and lead capture into SendGrid + Mailchimp.",
+    desc: "Public face of Banyan Labs — Payload CMS-powered blog, MDX role-based recruiting pages, product showcase, and lead capture into SendGrid + Mailchimp.",
     tags: ["Next.js 16", "Payload CMS", "PostgreSQL", "Cloud SQL"],
     live: "https://banyanlabs.io",
+    caseStudy: "/case-studies/banyan-website",
     image: "/images/Banyan-Website.png",
   },
   {
     id: 7,
     title: "HALO Platform",
-    desc: "A blockchain-anchored professional identity platform giving justice-impacted workers a verifiable, portable career record they own — endorsements, organization invites, and on-chain trust anchored to Base L2.",
+    desc: "Justice-impacted workers carry their work history but rarely own it. HALO is a blockchain-anchored identity platform giving them a portable, verifiable career record — endorsements, organization invites, and on-chain trust anchored to Base L2.",
     tags: ["Next.js 16", "Firebase", "Base L2", "Tailwind 4"],
+    caseStudy: "/case-studies/halo",
     image: "/images/Halo.png",
   },
   {
-    id: 14,
-    title: "ShareXR",
-    desc: "Immersive 3D platform giving companies a way to deliver virtual training to employees.",
-    tags: ["Three.js", "Strapi", "Firebase", "3D"],
-    live: "https://sharexr.app",
-    image: "/images/ShareXR.png",
-  },
-  {
     id: 15,
-    title: "UpCurve",
-    desc: "Donation platform allowing users to give to non-profits with Stripe + Sendgrid.",
-    tags: ["Next.js", "Stripe", "Supabase", "Sendgrid"],
-    live: "https://upcurve.life",
+    title: "Upcurve",
+    desc: "Nonprofits needed a way to spin up branded campaigns, take donations, and embed a widget on any site without rebuilding their stack. Upcurve does that end-to-end with Stripe, Clerk, and a one-line embed script.",
+    tags: ["Next.js 15", "Clerk", "Supabase", "Stripe"],
+    caseStudy: "/case-studies/upcurve",
     image: "/images/Upcurve.png",
-  },
-  {
-    id: 16,
-    title: "Stor-It",
-    desc: "Cloud storage platform with file uploads, OTP auth, and DevOps pipeline.",
-    tags: ["Next.js", "Appwrite", "DevOps", "OTP"],
-    live: "https://stor-it-alpha.vercel.app",
-    code: "https://github.com/rblaylock-dev",
-    image: "/images/Stor-it.png",
   },
   {
     id: 17,
     title: "Redeemly",
-    desc: "Social platform for ministries to connect with their members in real time.",
+    desc: "Ministries needed a real-time way to keep their members connected between Sundays. Redeemly is a social platform built around discipleship rhythms, not generic feed engagement.",
     tags: ["Next.js", "Realtime Chat", "Social"],
     live: "https://redeemly-startup.vercel.app",
+    caseStudy: "/case-studies/redeemly",
     image: "/images/Redeemly.png",
   },
   {
     id: 18,
     title: "Rooftop Ministries",
-    desc: "Professional ministry website with custom branding, full domain + DNS setup.",
+    desc: "Built a professional ministry website end-to-end — custom branding, full domain + DNS setup, and a Next.js + Tailwind stack tuned for clarity over cleverness.",
     tags: ["Next.js", "Tailwind", "DNS", "Domain"],
     live: "https://www.rooftopministries.org",
     code: "https://github.com/rblaylock-dev",
+    caseStudy: "/case-studies/rooftop-ministries",
     image: "/images/rooftop-ministries.png",
   },
   {
     id: 19,
     title: "Hook Line and Savannah",
-    desc: "A mobile-first event discovery platform for Savannah, TN — public calendar with category filtering, admin CRUD, and Firestore-rules-enforced role-based access.",
+    desc: "My hometown didn't have one place to find local events. HLS is a mobile-first event discovery platform for Savannah, TN — public calendar with category filtering, admin CRUD, and Firestore-rule-enforced role-based access.",
     tags: ["Next.js 16", "Firebase", "Firestore", "shadcn/ui"],
+    live: "https://www.hlsav.com",
     code: "https://github.com/RBlaylock-Dev/sav-community-hub",
+    caseStudy: "/case-studies/hls",
     image: "/images/hls.png",
   },
   {
@@ -135,6 +143,8 @@ const RAW_PROJECTS: Omit<Project, "kind" | "color" | "num">[] = [
     title: "Assessments.com Rebuild",
     desc: "A modern, statically-rendered rebuild of Assessments.com that preserves every legacy URL and SEO surface while replacing the underlying stack.",
     tags: ["Next.js 16", "React 19", "Tailwind 4", "Static Export"],
+    live: "https://www.assessments.com",
+    caseStudy: "/case-studies/assessments",
     image: "/images/Assessments.png",
   },
   {
@@ -142,7 +152,18 @@ const RAW_PROJECTS: Omit<Project, "kind" | "color" | "num">[] = [
     title: "Persevere Website",
     desc: "Redesigned and rebuilt the Persevere website on WordPress — the nonprofit coding bootcamp where I earned my Full-Stack Developer certificate.",
     tags: ["WordPress", "Web Design", "Nonprofit"],
+    caseStudy: "/case-studies/persevere",
     image: "/images/Persevere.png",
+  },
+  {
+    id: 16,
+    title: "Stor-It",
+    desc: "Cloud storage platform with file uploads, OTP auth, and a DevOps pipeline — built as a learning project to lock in Appwrite + Next.js patterns.",
+    tags: ["Next.js", "Appwrite", "DevOps", "OTP"],
+    live: "https://stor-it-alpha.vercel.app",
+    code: "https://github.com/rblaylock-dev",
+    caseStudy: "/case-studies/stor-it",
+    image: "/images/Stor-it.png",
   },
   {
     id: 23,
@@ -151,6 +172,7 @@ const RAW_PROJECTS: Omit<Project, "kind" | "color" | "num">[] = [
     tags: ["React", "Node", "MongoDB", "Bcrypt"],
     live: "https://backend-finals-ten.vercel.app/",
     code: "https://github.com/RBlaylock-Dev/BackendFinals",
+    caseStudy: "/case-studies/todo-app",
     image: "/images/todo-login.png",
   },
   {
@@ -160,6 +182,7 @@ const RAW_PROJECTS: Omit<Project, "kind" | "color" | "num">[] = [
     tags: ["React", "MUI", "HTML", "CSS"],
     live: "https://the-finals.vercel.app/",
     code: "https://github.com/RBlaylock-Dev/TheFinals",
+    caseStudy: "/case-studies/the-finals",
     image: "/images/product-page.png",
   },
   {
@@ -169,6 +192,7 @@ const RAW_PROJECTS: Omit<Project, "kind" | "color" | "num">[] = [
     tags: ["JavaScript", "HTML", "CSS"],
     live: "https://blackjack-pi-one.vercel.app/",
     code: "https://github.com/RBlaylock-Dev/Blackjack",
+    caseStudy: "/case-studies/blackjack",
     image: "/images/blackjack-game.png",
   },
   {
@@ -178,6 +202,7 @@ const RAW_PROJECTS: Omit<Project, "kind" | "color" | "num">[] = [
     tags: ["Three.js", "JavaScript", "Physics", "WebGL"],
     live: "https://marble-game-delta.vercel.app",
     code: "https://github.com/rblaylock-dev",
+    caseStudy: "/case-studies/marble-race",
     image: "/images/marble-race.png",
   },
   {
@@ -187,15 +212,17 @@ const RAW_PROJECTS: Omit<Project, "kind" | "color" | "num">[] = [
     tags: ["Three.js", "Particles", "Procedural"],
     live: "https://galaxy-generator-iota-liard.vercel.app",
     code: "https://github.com/rblaylock-dev",
+    caseStudy: "/case-studies/galaxy-generator",
     image: "/images/galaxy-generator.png",
   },
   {
     id: 10,
     title: "Earth Shaders",
-    desc: "3D Earth visualization with realistic continents, atmospheric scattering and day/night cycles.",
+    desc: "3D Earth visualization with realistic continents, atmospheric scattering, and day/night cycles.",
     tags: ["GLSL", "Shaders", "WebGL"],
     live: "https://earth-shaders-kappa.vercel.app",
     code: "https://github.com/rblaylock-dev",
+    caseStudy: "/case-studies/earth-shaders",
     image: "/images/earth-shaders.png",
   },
   {
@@ -205,6 +232,7 @@ const RAW_PROJECTS: Omit<Project, "kind" | "color" | "num">[] = [
     tags: ["R3F", "GLSL", "Shaders"],
     live: "https://portal-scene-r3-f.vercel.app",
     code: "https://github.com/rblaylock-dev",
+    caseStudy: "/case-studies/portal-scene",
     image: "/images/portal-scene.png",
   },
   {
@@ -214,6 +242,7 @@ const RAW_PROJECTS: Omit<Project, "kind" | "color" | "num">[] = [
     tags: ["Three.js", "Particles", "Interactive"],
     live: "https://fireworks-delta-fawn.vercel.app",
     code: "https://github.com/rblaylock-dev",
+    caseStudy: "/case-studies/fireworks",
     image: "/images/fireworks.png",
   },
   {
@@ -223,6 +252,7 @@ const RAW_PROJECTS: Omit<Project, "kind" | "color" | "num">[] = [
     tags: ["Three.js", "Lighting", "Atmosphere"],
     live: "https://haunted-house-3-js-tau.vercel.app",
     code: "https://github.com/rblaylock-dev",
+    caseStudy: "/case-studies/haunted-house",
     image: "/images/haunted-house.png",
   },
   {
@@ -232,6 +262,7 @@ const RAW_PROJECTS: Omit<Project, "kind" | "color" | "num">[] = [
     tags: ["Next.js", "Node", "Tailwind"],
     live: "https://team-directory-app1.vercel.app/",
     code: "https://github.com/rblaylock-banyanlabs/OJT-Team-Directory",
+    caseStudy: "/case-studies/team-directory",
     image: "/images/team-directory.png",
   },
 ]
@@ -242,6 +273,8 @@ export const PROJECTS: Project[] = RAW_PROJECTS.map((p, idx) => ({
   kind: pickKind(p.tags),
   color: PALETTE[idx % PALETTE.length],
 }))
+
+export const FEATURED_PROJECTS: Project[] = PROJECTS.filter((p) => p.featured)
 
 export interface StackCategory {
   num: string
@@ -280,7 +313,7 @@ export const STACK_CATEGORIES: StackCategory[] = [
   },
   {
     num: "03",
-    title: "Frontend & 3D",
+    title: "Frontend",
     accent: "#22d3ee",
     skills: [
       "React",
@@ -291,20 +324,32 @@ export const STACK_CATEGORIES: StackCategory[] = [
       "Framer Motion",
       "MDX",
       "React Router",
-      "Three.js",
-      "React Three Fiber",
-      "GLSL Shaders",
-      "WebGL",
     ],
   },
   {
     num: "04",
+    title: "3D & Visual",
+    accent: "#fb923c",
+    skills: [
+      "Three.js",
+      "React Three Fiber",
+      "GLSL Shaders",
+      "WebGL",
+      "Blender",
+      "3D Modeling",
+      "UV Mapping",
+      "PBR Texturing",
+      "glTF / GLB Pipeline",
+    ],
+  },
+  {
+    num: "05",
     title: "Mobile",
     accent: "#f472b6",
     skills: ["Flutter", "Riverpod", "go_router", "Material 3"],
   },
   {
-    num: "05",
+    num: "06",
     title: "Backend & APIs",
     accent: "#34d399",
     skills: [
@@ -323,13 +368,13 @@ export const STACK_CATEGORIES: StackCategory[] = [
     ],
   },
   {
-    num: "06",
+    num: "07",
     title: "Databases",
     accent: "#fbbf24",
     skills: ["PostgreSQL", "MongoDB", "Firestore", "Supabase", "Redis", "Appwrite", "Drizzle ORM", "Mongoose"],
   },
   {
-    num: "07",
+    num: "08",
     title: "Cloud & DevOps",
     accent: "#7dd3fc",
     skills: [
@@ -351,13 +396,13 @@ export const STACK_CATEGORIES: StackCategory[] = [
     ],
   },
   {
-    num: "08",
+    num: "09",
     title: "Auth & Services",
     accent: "#fb7185",
     skills: ["Stripe", "Clerk", "JWT", "OAuth 2.0", "SendGrid", "Resend", "Mailchimp"],
   },
   {
-    num: "09",
+    num: "10",
     title: "Tools",
     accent: "#c084fc",
     skills: ["ClickUp", "Figma", "Notion", "Postman", "Playwright", "Jest", "ESLint", "Prettier"],

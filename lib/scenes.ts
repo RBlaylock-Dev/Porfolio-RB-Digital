@@ -60,10 +60,10 @@ export function initHeroScene(canvas: HTMLCanvasElement): Cleanup {
   }
   window.addEventListener("mousemove", onMove)
 
-  const clock = new THREE.Clock()
+  const startT = performance.now()
   let raf = 0
   function tick() {
-    const t = clock.getElapsedTime()
+    const t = (performance.now() - startT) / 1000
     const arr = pGeo.attributes.position.array as Float32Array
     for (let i = 0; i < N; i++) {
       arr[i * 3] += velocities[i * 3]
@@ -151,10 +151,10 @@ export function initContactScene(canvas: HTMLCanvasElement): Cleanup {
   const pts = new THREE.Points(g, m)
   scene.add(pts)
 
-  const clock = new THREE.Clock()
+  const startT = performance.now()
   let raf = 0
   function tick() {
-    const t = clock.getElapsedTime()
+    const t = (performance.now() - startT) / 1000
     pts.rotation.y = t * 0.08
     pts.rotation.x = Math.sin(t * 0.1) * 0.1
     renderer.render(scene, camera)
@@ -281,10 +281,10 @@ export function makeProjectThumb(canvas: HTMLCanvasElement, kind: ThumbKind, col
     }
     scene.add(mesh)
 
-    const clock = new THREE.Clock()
+    const startT = performance.now()
     function tick() {
       if (!mesh || !renderer || !scene || !camera) return
-      const t = clock.getElapsedTime()
+      const t = (performance.now() - startT) / 1000
       mesh.rotation.x = t * 0.3
       mesh.rotation.y = t * 0.4
       renderer.render(scene, camera)

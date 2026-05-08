@@ -85,10 +85,11 @@ export function About() {
               starts to feel <em>alive</em>.
             </p>
             <p>
-              I&apos;m open to <strong>senior IC roles</strong>, contracts, and direct freelance
-              engagements — short scopes, long builds, or fractional senior help, all on the
-              table. If you&apos;re building something meaningful — especially in AI, 3D, or
-              mission-aligned technology — let&apos;s talk.
+              I&apos;m open to <strong>full-time</strong>, <strong>contract-to-hire</strong>,
+              contracts, and direct freelance engagements — including <strong>tech-lead</strong>
+              and lead-engineer seats on the right team. Senior IC works too if that&apos;s the
+              shape of the role. If you&apos;re building something meaningful — especially in
+              AI, 3D, or mission-aligned technology — let&apos;s talk.
             </p>
           </div>
         </div>

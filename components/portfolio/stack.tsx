@@ -36,7 +36,7 @@ export function Stack() {
       <div className="rb-container">
         <header className="stack-v3-head reveal">
           <div>
-            <div className="stack-v3-tag">03 / Stack · The full toolkit</div>
+            <div className="stack-v3-tag">04 / Stack · The full toolkit</div>
             <h2 className="stack-v3-title">
               Tools
               <br />
