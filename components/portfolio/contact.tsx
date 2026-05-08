@@ -3,9 +3,13 @@
 import { useEffect, useRef, useState } from "react"
 import { initContactScene } from "@/lib/scenes"
 
+type Status = "idle" | "sending" | "ok" | "error"
+
 export function Contact() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null)
-  const [data, setData] = useState({ name: "", email: "", subject: "", message: "" })
+  const [data, setData] = useState({ name: "", email: "", subject: "", message: "", _hp: "" })
+  const [status, setStatus] = useState<Status>("idle")
+  const [errorMsg, setErrorMsg] = useState<string | null>(null)
 
   useEffect(() => {
     if (!canvasRef.current) return
@@ -17,11 +21,29 @@ export function Contact() {
     setData({ ...data, [e.target.name]: e.target.value })
   }
 
-  const onSubmit = (e: React.FormEvent) => {
+  const onSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    window.location.href = `mailto:robert@rblaylock.dev?subject=${encodeURIComponent(
-      data.subject || "Hello Robert",
-    )}&body=${encodeURIComponent(`From: ${data.name} <${data.email}>\n\n${data.message}`)}`
+    if (status === "sending") return
+    setStatus("sending")
+    setErrorMsg(null)
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+      const json = await res.json().catch(() => ({}))
+      if (res.ok && json.ok) {
+        setStatus("ok")
+        setData({ name: "", email: "", subject: "", message: "", _hp: "" })
+      } else {
+        setStatus("error")
+        setErrorMsg(json.error || "Something went wrong. Please try again.")
+      }
+    } catch {
+      setStatus("error")
+      setErrorMsg("Network error. Please try again.")
+    }
   }
 
   return (
@@ -91,39 +113,108 @@ export function Contact() {
             </div>
           </div>
 
-          <form className="contact-form reveal reveal-d1" onSubmit={onSubmit}>
+          <form className="contact-form reveal reveal-d1" onSubmit={onSubmit} noValidate>
             <div className="field">
-              <label>{"// name"}</label>
-              <input name="name" value={data.name} onChange={onChange} required />
+              <label htmlFor="contact-name">{"// name"}</label>
+              <input
+                id="contact-name"
+                name="name"
+                value={data.name}
+                onChange={onChange}
+                required
+                disabled={status === "sending"}
+              />
             </div>
             <div className="field">
-              <label>{"// email"}</label>
-              <input name="email" type="email" value={data.email} onChange={onChange} required />
+              <label htmlFor="contact-email">{"// email"}</label>
+              <input
+                id="contact-email"
+                name="email"
+                type="email"
+                value={data.email}
+                onChange={onChange}
+                required
+                disabled={status === "sending"}
+              />
             </div>
             <div className="field">
-              <label>{"// subject"}</label>
-              <input name="subject" value={data.subject} onChange={onChange} />
+              <label htmlFor="contact-subject">{"// subject"}</label>
+              <input
+                id="contact-subject"
+                name="subject"
+                value={data.subject}
+                onChange={onChange}
+                disabled={status === "sending"}
+              />
             </div>
             <div className="field">
-              <label>{"// message"}</label>
-              <textarea name="message" value={data.message} onChange={onChange} required />
+              <label htmlFor="contact-message">{"// message"}</label>
+              <textarea
+                id="contact-message"
+                name="message"
+                value={data.message}
+                onChange={onChange}
+                required
+                disabled={status === "sending"}
+              />
             </div>
+
+            {/* honeypot — hidden from real users, bots fill it */}
+            <input
+              type="text"
+              name="_hp"
+              value={data._hp}
+              onChange={onChange}
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+              style={{
+                position: "absolute",
+                left: "-9999px",
+                width: 1,
+                height: 1,
+                opacity: 0,
+                pointerEvents: "none",
+              }}
+            />
+
             <button
               type="submit"
               className="btn btn-primary"
               style={{ alignSelf: "flex-start", marginTop: 8 }}
+              disabled={status === "sending" || status === "ok"}
             >
-              <span>Send message</span>
-              <svg
-                className="arr"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.6"
-              >
-                <path d="M5 12h14M13 6l6 6-6 6" />
-              </svg>
+              <span>
+                {status === "sending"
+                  ? "Sending…"
+                  : status === "ok"
+                    ? "Message sent ✓"
+                    : "Send message"}
+              </span>
+              {status !== "ok" && (
+                <svg
+                  className="arr"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                >
+                  <path d="M5 12h14M13 6l6 6-6 6" />
+                </svg>
+              )}
             </button>
+
+            {status === "ok" && (
+              <p className="contact-status ok" role="status">
+                {"// thanks — I'll get back to you within a day or two."}
+              </p>
+            )}
+            {status === "error" && (
+              <p className="contact-status err" role="alert">
+                {"// "}
+                {errorMsg || "Something went wrong."}
+              </p>
+            )}
           </form>
         </div>
       </div>

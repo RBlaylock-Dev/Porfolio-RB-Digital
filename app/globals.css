@@ -1735,3 +1735,13 @@ body::before {
   margin-right: 8px;
 }
 
+/* ---------- CONTACT STATUS ---------- */
+.contact-status {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  margin: 12px 0 0;
+}
+.contact-status.ok { color: #8fd693; }
+.contact-status.err { color: #ff8a8a; }
+
